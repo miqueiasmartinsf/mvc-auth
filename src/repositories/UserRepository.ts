@@ -8,8 +8,8 @@ export class UserRepository
     findAll(): Promise<UserModel[]> {
         throw new Error("Method not implemented.");
     }
-    findById(): Promise<UserModel> {
-        throw new Error("Method not implemented.");
+    async findById(id: string): Promise<UserModel | void> {
+        return;
     }
     create(data: UserModel): void {
         throw new Error("Method not implemented.");
