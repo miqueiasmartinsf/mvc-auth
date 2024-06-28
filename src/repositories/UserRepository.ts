@@ -2,7 +2,9 @@ import { UserModel } from "../models/UserModel";
 import { IUserRepository } from "../interfaces/IUserRepository";
 import { IBaseRepository } from ".";
 
-class UserRepository implements IUserRepository, IBaseRepository<UserModel> {
+export class UserRepository
+    implements IUserRepository, IBaseRepository<UserModel>
+{
     findAll(): Promise<UserModel[]> {
         throw new Error("Method not implemented.");
     }

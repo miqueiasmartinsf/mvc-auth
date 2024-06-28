@@ -9,4 +9,3 @@ export class UserModel {
         this.age = age;
     }
 }
-
