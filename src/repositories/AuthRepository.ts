@@ -17,11 +17,7 @@ export class AuthRepository implements IAuthRepository {
         password,
     }: UserModel): Promise<UserModel | void> {
         try {
-            const emailRegEx = /^\S+@\S+\.\S+$/;
-            if (!emailRegEx.test(email)) return;
-
             const currentUser = new UserSchema({ email, name, password });
-
             await currentUser.save();
         } catch (error) {}
     }
