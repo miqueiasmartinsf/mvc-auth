@@ -11,6 +11,9 @@ export class CreateUserController {
     async handle(req: Request, res: Response) {
         const { email, name, password } = req.body;
 
-        
+        try{
+            this.CreateUserUseCase.
+        }
+
     }
 }
