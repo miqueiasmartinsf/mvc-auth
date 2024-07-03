@@ -1,16 +1,16 @@
 import { IUserRepository } from "../../../interfaces/IUserRepository";
 import { UserModel } from "../../../models/UserModel";
+import { ICreateUserDTO } from "./createUserDTO";
 
 export class CreateUserUseCase {
-    private UserRepository: IUserRepository;
+    constructor(private UserRepository: IUserRepository) {}
 
-    constructor(UserRepository: IUserRepository) {
-        this.UserRepository = UserRepository;
-    }
+    async execute(data: ICreateUserDTO): Promise<UserModel> {
+        
+        console.log(123);
 
-    async execute(data: UserModel): Promise<UserModel> {
         const userAlreadyExists = this.UserRepository.findByEmail(data.email);
-
+        
         if (!userAlreadyExists) {
             throw new Error("User already exists") || "Unexpected Error";
         }
