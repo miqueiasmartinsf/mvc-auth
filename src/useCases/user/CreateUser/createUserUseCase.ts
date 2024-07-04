@@ -10,7 +10,9 @@ export class CreateUserUseCase {
     async execute(data: ICreateUserDTO): Promise<UserSchema> {
         data.id = uid(24);
 
-        const userAlreadyExists = await this.UserRepository.findByEmail(data.email);
+        const userAlreadyExists = await this.UserRepository.findByEmail(
+            data.email
+        );
 
         if (userAlreadyExists !== null) {
             throw new Error("User already exists");

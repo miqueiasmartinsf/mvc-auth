@@ -12,7 +12,7 @@ export class CreateUserController {
             return res.status(200);
         } catch (error) {
             console.error(error);
-            return res.send();
+            return res.status(400).json({ message: error });
         }
     };
 }

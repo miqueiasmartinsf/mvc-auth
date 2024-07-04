@@ -16,4 +16,5 @@ UserRouter.get("/", (req, res) => {
     res.json({ message: "success" });
 });
 
-UserRouter.post("/user", UserController.handle);
+UserRouter.post("/auth/register", UserController.handle);
+UserRouter.post("/auth/login", UserController.handle);
