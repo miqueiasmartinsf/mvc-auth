@@ -3,18 +3,16 @@ import { CreateUserUseCase } from "./createUserUseCase";
 import { Request, Response } from "express";
 
 export class CreateUserController {
-    private createUserUseCase: CreateUserUseCase;
+    constructor(private createUserUseCase: CreateUserUseCase) {}
 
-    constructor(createUserUseCase: CreateUserUseCase) {
-        this.createUserUseCase = createUserUseCase;
-    }
-
-    async handle(req: Request, res: Response) {
+    handle = async (req: Request, res: Response): Promise<Response> => {
         const { email, name, password } = req.body;
         try {
             await this.createUserUseCase.execute({ email, name, password });
+            return res.status(200);
         } catch (error) {
-            res.status(400).json(error);
+            console.error(error);
+            return res.send();
         }
-    }
+    };
 }

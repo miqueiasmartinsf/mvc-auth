@@ -10,6 +10,7 @@ export class UserRepository implements IUserRepository {
         throw new Error("Method not implemented.");
     }
     create(data: ICreateUserDTO): Promise<UserModel> {
+        console.log("repository")
         throw new Error("Method not implemented.");
     }
 }
