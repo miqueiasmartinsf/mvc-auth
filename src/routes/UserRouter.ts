@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
-import { UserController } from "../useCases/user/CreateUser/implementations";
+import { CreateUserControllerInstance } from "../useCases/user/CreateUser/implementations";
+import { LoginUserControllerImplementation } from "../useCases/user/LoginUser/implementations";
 
 export const UserRouter = express.Router();
 
@@ -16,5 +17,5 @@ UserRouter.get("/", (req, res) => {
     res.json({ message: "success" });
 });
 
-UserRouter.post("/auth/register", UserController.handle);
-UserRouter.post("/auth/login", UserController.handle);
+UserRouter.post("/auth/register", CreateUserControllerInstance.handle);
+UserRouter.post("/auth/login", LoginUserControllerImplementation.handle);

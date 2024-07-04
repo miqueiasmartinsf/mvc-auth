@@ -5,6 +5,6 @@ import { UserRepository } from "../../../../repositories/UserRepository";
 
 const userRepository = new UserRepository();
 
-const UserUseCase = new CreateUserUseCase(userRepository);
+const userUseCase = new CreateUserUseCase(userRepository);
 
-export const UserController = new CreateUserController(UserUseCase);
+export const CreateUserControllerInstance = new CreateUserController(userUseCase);
