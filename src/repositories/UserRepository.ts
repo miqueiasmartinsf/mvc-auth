@@ -8,11 +8,9 @@ export class UserRepository implements IUserRepository {
     }
     async findByEmail(email: string): Promise<UserSchema | null> {
         const user = await UserSchema.findOne({ where: { email: email } });
-        console.log(user);
         return user;
     }
     async create(data: ICreateUserDTO): Promise<UserSchema> {
-        console.log(data);
         const user = await UserSchema.create({
             id: data.id,
             name: data.name,

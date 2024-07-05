@@ -2,10 +2,13 @@ import { IUserRepository } from "../../../interfaces/IUserRepository";
 import { LoginUserDTO } from "./loginUserDTO";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
-import 'dotenv/config'
+import "dotenv/config";
 
 export class LoginUserUseCase {
-    constructor(private userRepository: IUserRepository) {}
+    constructor(
+        private userRepository: IUserRepository,
+        private jsonWebTokenPass: string = "root"
+    ) {}
 
     execute = async (data: LoginUserDTO): Promise<string> => {
         const userExists = await this.userRepository.findByEmail(data.email);
@@ -20,7 +23,7 @@ export class LoginUserUseCase {
             throw new Error("Incorrect password");
         }
 
-        const token = jsonwebtoken.sign(data.email, process.env.JWT_SK);
+        const token = jsonwebtoken.sign(data.email, this.jsonWebTokenPass);
 
         return token;
     };

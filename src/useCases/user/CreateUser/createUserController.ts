@@ -8,11 +8,17 @@ export class CreateUserController {
     handle = async (req: Request, res: Response): Promise<Response> => {
         const { email, name, password } = req.body;
         try {
-            await this.createUserUseCase.execute({ email, name, password });
-            return res.status(200);
+            await this.createUserUseCase.execute({
+                email,
+                name,
+                password,
+            });
+            return res.status(200).json({ message: "success" });
         } catch (error) {
-            console.error(error);
-            return res.status(400).json({ message: error });
+            if (error instanceof Error) {
+                return res.status(400).json({ message: error.message });
+            }
+            return res.status(400);
         }
     };
 }

@@ -8,9 +8,16 @@ export class LoginUserController {
         const { email, password } = req.body;
 
         try {
-            await this.loginUserUseCase.execute({ email, password });
+            const token = await this.loginUserUseCase.execute({
+                email,
+                password,
+            });
+            return res.status(200).json({ auth_token: token });
         } catch (error) {
-            console.log(error);
+            if (error instanceof Error) {
+                return res.status(400).json({ message: error.message });
+            }
+            return res.status(400);
         }
 
         return res;
